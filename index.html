@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>カンバン</title>
+<meta name="theme-color" content="#0f766e">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+  html, body { margin: 0; height: 100%; background: #f4f5f7; overflow: hidden;
+               font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", Arial, sans-serif; }
+  iframe { border: 0; width: 100%; height: 100%; display: block; }
+  #help { position: fixed; right: 12px; bottom: 10px; font-size: 12px; color: #6b778c;
+          background: rgba(255,255,255,.92); border: 1px solid #dfe1e6; border-radius: 6px;
+          padding: 4px 8px; display: none; }
+  #help a { color: #0c66e4; }
+</style>
+</head>
+<body>
+<script>
+  // Apps Script ウェブアプリの URL
+  const GAS_URL = 'https://script.google.com/a/macros/core-tech.jp/s/AKfycbxFrD0h08l3mBVc25j1mOEMHqjYgP-g_eEFzOuR0AWzuW1lOeglDMM8fbacwUKYNl_p/exec';
+</script>
+<div id="help">表示されない場合は <a id="direct" href="#">こちらから開く</a></div>
+<script>
+  const f = document.createElement('iframe');
+  f.src = GAS_URL;
+  f.allow = 'clipboard-write';
+  document.body.prepend(f);
+  document.getElementById('direct').href = GAS_URL;
+  setTimeout(() => { document.getElementById('help').style.display = 'block'; }, 8000);
+  setTimeout(() => { document.getElementById('help').style.display = 'none'; }, 20000);
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+</script>
+</body>
+</html>
